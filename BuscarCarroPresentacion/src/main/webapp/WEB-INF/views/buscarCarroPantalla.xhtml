@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Buscar Carros por Localizacion</title>
+        <script>
+            function enviarLocalizacion(form) {
+                form.method = 'POST';
+                form.action = '#{request.contextPath}/mvc/app/buscarCarros/resultados';
+                form.submit();
+                return true;
+            }
+        </script>
+    </h:head>    
+    <h:body>
+        <h1>Buscar Carros por Localizacion</h1>
+        <f:view>
+            <h:form prependId="false">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Localizacion:" for="localizacion" />
+                    <h:inputText id="localizacion" value="#{OCRCarrosRepositorio.carroLocalizacion.localizacion}" title="Localizacion" required="true" requiredMessage="The Localizacion field is required."/>                                     
+                </h:panelGrid>
+                <h:commandButton value="Buscar"
+                                 id="btnMod"
+                                 onclick="javascript:return enviarLocalizacion(document.forms[0]);"/>
+
+                <input type="hidden" name="${mvc.csrf.name}" value="${mvc.csrf.token}"/>
+            </h:form>
+        </f:view>        
+        
+        
+
+    </h:body>
+</html>
+
